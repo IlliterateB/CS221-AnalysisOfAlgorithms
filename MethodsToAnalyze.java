@@ -11,13 +11,14 @@ public class MethodsToAnalyze {
 	 * @param value int that may be in array
 	 * @return index where value is found or -1 if not found
 	 */
-	public static int find(int[] array, int value) {
-		for (int i = 0; i < array.length; i++) {
-			if (array[i] == value) {
-				return i;
+
+	public static int find(int[] array, int value) { // WORST: 2 + 3n == O(n) // BEST: 3 == O(1) // AVE: 2 + 1.5n == O(n)
+		for (int i = 0; i < array.length; i++) { // 1 @ i=0, 1 @ i< array.length, 1n @ i++
+			if (array[i] == value) { // 1 @ check each time == 1n
+				return i; // Says returns are not to be counted
 			}
-		}
-		return -1;
+		} // 1n @ check loop condition
+		return -1; // Says returns are not to be counted
 	}
 
 	/**
