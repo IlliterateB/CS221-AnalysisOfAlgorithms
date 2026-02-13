@@ -27,12 +27,12 @@ public class MethodsToAnalyze {
 	 * @param oldValue value to replace
 	 * @param newValue new value
 	 */
-	public static void replaceAll(int[] array, int oldValue, int newValue) {
-		int index = find(array, oldValue);
-		while (index > -1) {
-			array[index] = newValue;
-			index = find(array, oldValue);
-		}
+	public static void replaceAll(int[] array, int oldValue, int newValue) { // WORST: (3 + 1.5n) + 2 + 1n + (3n + 1.5n^2) + 1n == 5 + 6.5n + 1.5n^2 // BEST: 4 + 3n // AVERAGE: 
+		int index = find(array, oldValue); // 1 @ call for this then 3 + 1.5n @ find
+		while (index > -1) { // Best for this is 0, but the find uses 2 + 3n // 1 @ initial check
+			array[index] = newValue; // 1n
+			index = find(array, oldValue); // n(3 + 1.5n)
+		} // 1n @ check loop condition
 	}
 	
 	/**
